@@ -1,0 +1,29 @@
+{
+  "name": "webpack-sw-plugin",
+  "version": "0.0.1",
+  "description": "plugin for webpack build a ServiceWorker webapp quickly and easily",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf ./docs/dist ./lib",
+    "build": "npm run clean && babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/violinux666/webpack-sw-plugin.git"
+  },
+  "keywords": [
+    "service-worker",
+    "webpack"
+  ],
+  "author": "violinux666",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/violinux666/webpack-sw-plugin/issues"
+  },
+  "homepage": "https://github.com/violinux666/webpack-sw-plugin#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "rimraf": "^2.6.3"
+  }
+}
