@@ -23,7 +23,7 @@ module.exports.pitch = function pitch() {
     }
 
     const source = `
-      var swPath = ${this.query.slice(1)};
+      var swPath = '${this.query.slice(1)}';
       ${template}
     `.trim()
     callback(null, source)

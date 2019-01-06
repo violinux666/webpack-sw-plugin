@@ -1,16 +1,16 @@
 const fs =require('fs');
 const path = require('path');
 const swFileName="vio-sw.js"
-class WebpackSwPlugin {
+class WebpackSWPlugin {
     constructor(doneCallback, failCallback) {
         this.doneCallback = doneCallback;
         this.failCallback = failCallback;
     }
-    handleWorkerFile(publicPath){
+    apply(compiler) {
+        let publicPath=compiler.options.output.publicPath||'./';
+        let outputPath=compiler.options.output.path;
         const workerPath = path.resolve(__dirname, './worker.js');
-        const LoaderQuery = JSON.stringify({
-            swURL: path.join(publicPath, swFileName),
-        })
+        const LoaderQuery = path.join(publicPath, swFileName);
         const loaderPath = `${path.join(__dirname, 'workerLoader.js')}?${LoaderQuery}`
         const module = compiler.options.module
         let rules
@@ -25,23 +25,19 @@ class WebpackSwPlugin {
             test: workerPath, 
             use: loaderPath ,
         })
-    }
-    apply(compiler) {
-        let publicPath=compiler.options.output.publicPath;
-        let outputPath=compiler.options.output.path;
-        this.handleWorkerFile(publicPath);
         let chunkList=[];
         compiler.hooks.done.tap('emit',function(stats){
+            var {hash}=stats;
             var sw=fs.readFileSync(`${__dirname}/sw.template.js`).toString();
             let {chunks}=stats.compilation;
             
             chunks.map(item=>{
                 chunkList.push(`${publicPath}/${item.files[0]}`);
             })
-            sw=`var files=${JSON.stringify(chunkList)};;`+sw;
+            sw=`var cacheStorageKey = 'sw$${hash}';var files=${JSON.stringify(chunkList)};`+sw;
             fs.writeFileSync(path.resolve(outputPath,"sw.js"),sw);
         })
     }
 }
 
-module.exports = EndWebpackPlugin;
+module.exports = WebpackSWPlugin;

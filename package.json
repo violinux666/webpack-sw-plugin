@@ -4,8 +4,11 @@
   "description": "plugin for webpack build a ServiceWorker webapp quickly and easily",
   "main": "lib/index.js",
   "scripts": {
-    "clean": "rimraf ./docs/dist ./lib",
-    "build": "npm run clean && NODE_ENV=production babel src --out-dir lib"
+    "clean": "rimraf ./lib",
+    "build": "npm run clean && NODE_ENV=production babel src --out-dir lib",
+    "example:debug": "cd example  && node --inspect-brk=5858 ../node_modules/webpack/bin/webpack.js --config webpack.config.js",
+    "example": "cd example && webpack --config webpack.config.js",
+    "test:debug": "npm run example:debug"
   },
   "repository": {
     "type": "git",
@@ -24,7 +27,9 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0"
   },
   "files": [
     "dist"

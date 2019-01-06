@@ -6,10 +6,10 @@ function register({onUpdate}){
                 sendPageUrl();
             }
             else if(data.onUpdate){
-                onUpdate.call(null);
+                onUpdate&&onUpdate.call(null);
             }
         })
-        navigator.serviceWorker.register(file).then(function (reg) {
+        navigator.serviceWorker.register(swPath).then(function (reg) {
             if (reg.active) {
                 sendPageUrl();
             }
