@@ -36,7 +36,7 @@ function send_message_to_sw(msg){
         navigator.serviceWorker.controller.postMessage(msg, [msg_chan.port2]);
     });
 }
-const runtime={
+const worker={
     register
 }
-export default runtime;
+export default worker;

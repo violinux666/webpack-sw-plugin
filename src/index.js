@@ -1,17 +1,17 @@
 const fs =require('fs');
 const path = require('path');
+const swFileName="vio-sw.js"
 class WebpackSwPlugin {
     constructor(doneCallback, failCallback) {
         this.doneCallback = doneCallback;
         this.failCallback = failCallback;
     }
-    
-    apply(compiler) {
-        const runtimePath = path.resolve(__dirname, './runtime.js')
-        const data = JSON.stringify({
-          scriptURL: path.join(this.options.publicPath, this.options.filename),
+    handleWorkerFile(publicPath){
+        const workerPath = path.resolve(__dirname, './worker.js');
+        const LoaderQuery = JSON.stringify({
+            swURL: path.join(publicPath, swFileName),
         })
-        const loaderPath = `${path.join(__dirname, 'runtimeLoader.js')}?${data}`
+        const loaderPath = `${path.join(__dirname, 'workerLoader.js')}?${LoaderQuery}`
         const module = compiler.options.module
         let rules
         if (module.rules) {
@@ -21,13 +21,20 @@ class WebpackSwPlugin {
         } else {
           module.rules = rules = []
         }
-        rules.push({ test: runtimePath, use: loaderPath })
+        rules.push({ 
+            test: workerPath, 
+            use: loaderPath ,
+        })
+    }
+    apply(compiler) {
+        let publicPath=compiler.options.output.publicPath;
+        let outputPath=compiler.options.output.path;
+        this.handleWorkerFile(publicPath);
         let chunkList=[];
         compiler.hooks.done.tap('emit',function(stats){
             var sw=fs.readFileSync(`${__dirname}/sw.template.js`).toString();
             let {chunks}=stats.compilation;
-            let publicPath=compiler.options.output.publicPath;
-            let outputPath=compiler.options.output.path;
+            
             chunks.map(item=>{
                 chunkList.push(`${publicPath}/${item.files[0]}`);
             })
