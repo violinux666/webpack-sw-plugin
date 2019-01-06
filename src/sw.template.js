@@ -1,9 +1,3 @@
-var cacheStorageKey = 'one';
-
-var cacheList = [
-  "/build/sum.js",
-  "/build/todo.json"
-]
 self.addEventListener('message',function(e){
   var data=e.data;
   if(data.pageUrl){

@@ -5,8 +5,23 @@ class WebpackSwPlugin {
         this.doneCallback = doneCallback;
         this.failCallback = failCallback;
     }
-
+    
     apply(compiler) {
+        const runtimePath = path.resolve(__dirname, './runtime.js')
+        const data = JSON.stringify({
+          scriptURL: path.join(this.options.publicPath, this.options.filename),
+        })
+        const loaderPath = `${path.join(__dirname, 'runtimeLoader.js')}?${data}`
+        const module = compiler.options.module
+        let rules
+        if (module.rules) {
+          module.rules = rules = [...module.rules]
+        } else if (module.loaders) {
+          module.loaders = rules = [...module.loaders]
+        } else {
+          module.rules = rules = []
+        }
+        rules.push({ test: runtimePath, use: loaderPath })
         let chunkList=[];
         compiler.hooks.done.tap('emit',function(stats){
             var sw=fs.readFileSync(`${__dirname}/sw.template.js`).toString();

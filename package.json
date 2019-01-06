@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf ./docs/dist ./lib",
-    "build": "npm run clean && babel src --out-dir lib"
+    "build": "npm run clean && NODE_ENV=production babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "rimraf": "^2.6.3"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
