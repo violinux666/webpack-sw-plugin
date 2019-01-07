@@ -1,6 +1,6 @@
 const fs =require('fs');
 const path = require('path');
-const swFileName="vio-sw.js"
+const swFileName="service-worker-builder.js"
 class WebpackSWPlugin {
     constructor(doneCallback, failCallback) {
         this.doneCallback = doneCallback;
