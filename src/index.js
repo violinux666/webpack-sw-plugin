@@ -2,15 +2,20 @@ const fs =require('fs');
 const path = require('path');
 const swFileName="service-worker-builder.js"
 class WebpackSWPlugin {
-    constructor(doneCallback, failCallback) {
-        this.doneCallback = doneCallback;
-        this.failCallback = failCallback;
+    constructor(options) {
+        let defaultOptions={
+            minify: process.env.NODE_ENV === 'production'
+        };
+        this.options={
+            ...defaultOptions,
+            ...options
+        }
     }
     apply(compiler) {
         let publicPath=compiler.options.output.publicPath||'./';
         let outputPath=compiler.options.output.path;
         const workerPath = path.resolve(__dirname, './worker.js');
-        const LoaderQuery = path.join(publicPath, swFileName);
+        const LoaderQuery = path.join("/", swFileName);
         const loaderPath = `${path.join(__dirname, 'workerLoader.js')}?${LoaderQuery}`
         const module = compiler.options.module
         let rules

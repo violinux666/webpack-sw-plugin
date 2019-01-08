@@ -1,4 +1,4 @@
-var cacheStorageKey = 'sw$d29b15236c077a211c1e';var cacheList=["/dist/bundle.js"];'use strict';
+var cacheStorageKey = 'sw$76ae90579493fd428ca8';var cacheList=["/dist/bundle.js"];'use strict';
 
 self.addEventListener('message', function (e) {
   var data = e.data;
