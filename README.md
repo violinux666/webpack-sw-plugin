@@ -79,7 +79,7 @@ const text="other values";
 ## Get Help
 
 - Contact me on iewnap@outlook.com
-- raise an issue on Github.[Submit a issue](https://github.com/violinux666/react-vio-form/issues/new)
+- raise an issue on Github.[Submit a issue](https://github.com/violinux666/webpack-sw-plugin/issues/new)
 
 ## License
 
