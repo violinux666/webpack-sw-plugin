@@ -6,7 +6,7 @@
 
 ## Features
 
-- Easy to use with webpack4
+- Easy to use with webpack4
 - No ServiceWorker file is required
 - Provider a callback API that do something when the webpack output file is changed
 
