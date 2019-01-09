@@ -60,7 +60,7 @@ You can pass a configuration options to webpack-sw-plugin.
 
 when the webpack output file has benn changed, we provide a callback API u can do something
 
-```
+```jsx
 import worker from 'webpack-sw-plugin/worker';
 worker.register({
     console.log('client has a new version. page will refresh in 5s....');
