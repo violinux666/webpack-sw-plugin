@@ -45,7 +45,7 @@ module.exports = {
 client
 
 ```jsx
-import worker from 'webpack-sw-plugin/worker';
+import worker from 'webpack-sw-plugin/lib/worker';
 worker.register();
 ```
 
