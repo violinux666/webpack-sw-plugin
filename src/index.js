@@ -1,5 +1,6 @@
 const fs =require('fs');
 const path = require('path');
+const UglifyJS = require ('uglify-es');
 class WebpackSWPlugin {
     constructor(options) {
         let defaultOptions={
@@ -44,6 +45,7 @@ class WebpackSWPlugin {
                 chunkList.push(`${publicPath}/${item.files[0]}`);
             })
             sw=`var cacheStorageKey = 'sw$${hash}';var cacheList=${JSON.stringify(chunkList)};`+sw;
+            sw=UglifyJS.minify(sw).code;
 
             outputFileSystem.mkdirp(path.resolve(outputPath),(err)=>{
                 if(err){

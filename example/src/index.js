@@ -1,5 +1,5 @@
 import worker from '../../lib/worker';
-console.log('hello world!');
+console.log('hello world!!!');
 worker.register({
     onUpdate:()=>{
         console.log('onUpdate');
