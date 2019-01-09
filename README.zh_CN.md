@@ -70,7 +70,7 @@ plugins:[
 当webpack的输出文件变化时，我们提供了一个回调函数
 
 ```jsx
-import worker from 'webpack-sw-plugin/worker';
+import worker from 'webpack-sw-plugin/lib/worker';
 worker.register({
     onUpdate:()=>{
         console.log('client has a new version. page will refresh in 5s....');
