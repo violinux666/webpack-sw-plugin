@@ -1,4 +1,5 @@
-function register({onUpdate}){
+function register(option={}){
+    let {onUpdate}=option;
     if(navigator.serviceWorker){
         navigator.serviceWorker.addEventListener('message',function(e){
             let {data}=e;

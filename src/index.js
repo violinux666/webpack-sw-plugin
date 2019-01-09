@@ -2,7 +2,7 @@ const fs =require('fs');
 const path = require('path');
 const UglifyJS = require ('uglify-es');
 class WebpackSWPlugin {
-    constructor(options) {
+    constructor(options={}) {
         let defaultOptions={
             minify: process.env.NODE_ENV === 'production',
             filename:"service-worker-builder.js"
