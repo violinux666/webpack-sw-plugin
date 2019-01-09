@@ -48,10 +48,8 @@ self.addEventListener('fetch', function(e) {
   e.respondWith(
     caches.match(e.request).then(function(response) {
       if (response != null) { 
-        console.log(`fetch:${e.request.url} from cache`);
         return response
       }else{
-        console.log(`fetch:${e.request.url} from http`);
         return fetch(e.request.url)
       }
     })

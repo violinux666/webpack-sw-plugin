@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf ./lib",
-    "clean:example": "",
+    "clean:example": "rimraf ./example/dist",
     "build": "npm run clean && NODE_ENV=production babel src --out-dir lib",
     "example:debug": "cd example && node --inspect-brk=5858 ../node_modules/webpack/bin/webpack.js --config webpack.config.js",
     "example": "cd example &&  webpack-dev-server --config webpack.config.js"
