@@ -1,6 +1,10 @@
 # webpack-sw-plugin
 
-> plugin for webpack4 to build a ServiceWorker webapp quickly and easily
+> plugin for webpack4 , Be quickly and easily to build a ServiceWorker webapp you can access it offline
+
+[![NPM version][npm-img]][npm-url]
+[![NPM downloads][npm-downloads-img]][npm-url]
+[![CircleCI][circleci-img]][circleci-url]
 
 [![NPM](https://img.shields.io/npm/v/webpack-sw-plugin.svg)](https://www.npmjs.com/package/webpack-sw-plugin) 
 
@@ -13,7 +17,7 @@
 ## install
 
 ```bash
-npm install --save webpack-sw-plugin
+npm install --save-dev webpack-sw-plugin
 ```
 
 ## Run example
