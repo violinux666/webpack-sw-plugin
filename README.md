@@ -22,7 +22,7 @@ npm install --save webpack-sw-plugin
 npm run example
 ```
 
-open localhost:3000
+and then, open localhost:3000
 
 
 ## Usage
@@ -44,7 +44,43 @@ module.exports = {
 
 client
 
-```
+```jsx
 import worker from 'webpack-sw-plugin/worker';
 worker.register();
 ```
+
+### Plugin options
+
+You can pass a configuration options to webpack-sw-plugin.
+
+- **filename**: The output serviceworker file name. default is 'service-worker-builder.js'.
+- **minify**: controls if we need a minified sw file. would be true if the mode is production .
+
+### onUpdate
+
+when the webpack output file has benn changed, we provide a callback API u can do something
+
+```
+import worker from 'webpack-sw-plugin/worker';
+worker.register({
+    console.log('client has a new version. page will refresh in 5s....');
+    setTimeout(function(){
+        window.location.reload();
+    },5000)
+});
+```
+
+There is a example in */example*. you could see result if change the text.
+
+```jsx
+const text="other values";
+```
+
+## Get Help
+
+- Contact me on iewnap@outlook.com
+- raise an issue on Github.[Submit a issue](https://github.com/violinux666/react-vio-form/issues/new)
+
+## License
+
+MIT © [violinux666](https://github.com/violinux666)
