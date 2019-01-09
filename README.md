@@ -4,6 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/webpack-sw-plugin.svg)](https://www.npmjs.com/package/webpack-sw-plugin) 
 
+[简体中文](https://github.com/violinux666/webpack-sw-plugin/blob/master/README.zh_CN.md)|[English](https://github.com/violinux666/webpack-sw-plugin)
 
 ## Features
 
