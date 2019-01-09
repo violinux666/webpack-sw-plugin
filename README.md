@@ -55,6 +55,15 @@ worker.register();
 
 You can pass a configuration options to webpack-sw-plugin.
 
+```js
+plugins:[
+    new WebpackSWPlugin({
+        filename: "test-sw.js",
+        minify: true
+    })
+]
+```
+
 - **filename**: The output serviceworker file name. default is 'service-worker-builder.js'.
 - **minify**: controls if we need a minified sw file. would be true if the mode is production .
 

@@ -53,6 +53,15 @@ worker.register();
 
 你可以传递一个配置给webpack-sw-plugin
 
+```js
+plugins:[
+    new WebpackSWPlugin({
+        filename: "test-sw.js",
+        minify: true
+    })
+]
+```
+
 - **filename**: 输出serviceworker文件的文件名，默认值是 'service-worker-builder.js'.
 - **minify**: 控制serviceworker文件是否需要被压缩，如果是生产模式，将会被默认开启.
 
