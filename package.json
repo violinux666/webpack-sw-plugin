@@ -5,9 +5,10 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf ./lib",
+    "clean:example": "",
     "build": "npm run clean && NODE_ENV=production babel src --out-dir lib",
-    "example:debug": "node --inspect-brk=5858 ../node_modules/webpack/bin/webpack.js --config example/webpack.config.js",
-    "example": "webpack-dev-server --config example/webpack.config.js"
+    "example:debug": "cd example && node --inspect-brk=5858 ../node_modules/webpack/bin/webpack.js --config webpack.config.js",
+    "example": "cd example &&  webpack-dev-server --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-1": "^6.24.1",
+    "html-webpack-plugin": "^3.2.0",
     "rimraf": "^2.6.3",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",

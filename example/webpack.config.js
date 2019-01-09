@@ -1,12 +1,12 @@
 const path = require('path');
-const WebpackSWPlubin = require('../lib/index');
+const WebpackSWPlugin = require('../lib/index');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist'
   },
   devServer: {
     contentBase: path.join(__dirname,'dist'),
@@ -14,6 +14,10 @@ module.exports = {
     inline:true
   },
   plugins:[
-      new WebpackSWPlubin({})
+      new WebpackSWPlugin({}),
+      new HtmlWebpackPlugin({
+        title:"webpack-sw-plugin example",
+        inject:true
+      })
   ]
 };

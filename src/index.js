@@ -1,10 +1,10 @@
 const fs =require('fs');
 const path = require('path');
-const swFileName="service-worker-builder.js"
 class WebpackSWPlugin {
     constructor(options) {
         let defaultOptions={
-            minify: process.env.NODE_ENV === 'production'
+            minify: process.env.NODE_ENV === 'production',
+            filename:"service-worker-builder.js"
         };
         this.options={
             ...defaultOptions,
@@ -12,10 +12,12 @@ class WebpackSWPlugin {
         }
     }
     apply(compiler) {
+        let {options}=this;
         let publicPath=compiler.options.output.publicPath||'./';
         let outputPath=compiler.options.output.path;
+        const filepath=path.resolve(outputPath,options.filename);
         const workerPath = path.resolve(__dirname, './worker.js');
-        const LoaderQuery = path.join("/", swFileName);
+        const LoaderQuery = path.join("/", options.filename);
         const loaderPath = `${path.join(__dirname, 'workerLoader.js')}?${LoaderQuery}`
         const module = compiler.options.module
         let rules
@@ -31,16 +33,28 @@ class WebpackSWPlugin {
             use: loaderPath ,
         })
         let chunkList=[];
+        let {outputFileSystem}=compiler;
         compiler.hooks.done.tap('emit',function(stats){
             var {hash}=stats;
             var sw=fs.readFileSync(`${__dirname}/sw.template.js`).toString();
             let {chunks}=stats.compilation;
             
+            //generate sw file content
             chunks.map(item=>{
                 chunkList.push(`${publicPath}/${item.files[0]}`);
             })
             sw=`var cacheStorageKey = 'sw$${hash}';var cacheList=${JSON.stringify(chunkList)};`+sw;
-            fs.writeFileSync(path.resolve(outputPath,swFileName),sw);
+
+            outputFileSystem.mkdirp(path.resolve(outputPath),(err)=>{
+                if(err){
+                    console.error(err);
+                }
+                outputFileSystem.writeFile(filepath,sw,(err)=>{
+                    if(err){
+                        console.err(err);
+                    }
+                })
+            })
         })
     }
 }
