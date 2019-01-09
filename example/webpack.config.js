@@ -14,7 +14,10 @@ module.exports = {
     inline:true
   },
   plugins:[
-      new WebpackSWPlugin({}),
+      new WebpackSWPlugin({
+        filename:"test-sw.js",//default is 'service-worker-builder.js'
+        minify:false,// would be true if the mode is production 
+      }),
       new HtmlWebpackPlugin({
         title:"webpack-sw-plugin example",
         inject:true

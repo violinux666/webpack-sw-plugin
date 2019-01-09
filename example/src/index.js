@@ -1,5 +1,6 @@
 import worker from '../../lib/worker';
-console.log('hello world!!!');
+const text="hello world!";
+document.body.innerHTML=text;
 worker.register({
     onUpdate:()=>{
         console.log('onUpdate');

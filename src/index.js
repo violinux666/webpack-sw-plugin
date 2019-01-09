@@ -42,11 +42,12 @@ class WebpackSWPlugin {
             
             //generate sw file content
             chunks.map(item=>{
-                chunkList.push(`${publicPath}/${item.files[0]}`);
+                chunkList.push(`${publicPath}${item.files[0]}`);
             })
             sw=`var cacheStorageKey = 'sw$${hash}';var cacheList=${JSON.stringify(chunkList)};`+sw;
-            sw=UglifyJS.minify(sw).code;
-
+            if(options.minify){
+                sw=UglifyJS.minify(sw).code;
+            }
             outputFileSystem.mkdirp(path.resolve(outputPath),(err)=>{
                 if(err){
                     console.error(err);
