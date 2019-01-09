@@ -1,34 +1,33 @@
 # webpack-sw-plugin
 
-> plugin for webpack4 , Be quickly and easily to build a ServiceWorker webapp you can access it offline
+> webpack4插件，能快速容易的创建一个可离线访问的serviceWorker网页应用
 
 [![NPM](https://img.shields.io/npm/v/webpack-sw-plugin.svg)](https://www.npmjs.com/package/webpack-sw-plugin) 
 
+## 特性
 
-## Features
+- 简单的与webpack4使用
+- 不需要提供ServiceWorker文件
+- 提供了一个回调API，当webpack的输出文件发生变化时，你可以做一些处理
 
-- Easy to use with webpack4
-- No ServiceWorker file is required
-- Provider a callback API that do something when the webpack output file is changed
-
-## install
+## 安装
 
 ```bash
 npm install --save-dev webpack-sw-plugin
 ```
 
-## Run example
+## 执行案例
 
 ```
 npm run example
 ```
 
-and then, open localhost:3000
+在浏览器内打开localhost:3000
 
 
-## Usage
+## 使用教程
 
-### quick start
+### 快速上手
 
 webpack.config.js
 
@@ -43,23 +42,23 @@ module.exports = {
 }
 ```
 
-client
+客户端
 
 ```jsx
 import worker from 'webpack-sw-plugin/lib/worker';
 worker.register();
 ```
 
-### Plugin options
+### 插件初始化选项
 
-You can pass a configuration options to webpack-sw-plugin.
+你可以传递一个配置给webpack-sw-plugin
 
 - **filename**: The output serviceworker file name. default is 'service-worker-builder.js'.
 - **minify**: controls if we need a minified sw file. would be true if the mode is production .
 
-### onUpdate
+### 更新时回调
 
-when the webpack output file has benn changed, we provide a callback API u can do something
+当webpack的输出文件变化时，我们提供了一个回调函数
 
 ```jsx
 import worker from 'webpack-sw-plugin/worker';
@@ -73,16 +72,16 @@ worker.register({
 });
 ```
 
-There is a example in */example*. onUpdate will be triggered if the text is changed.
+这个是在example目录下的例子，如果你改变text的值，你将看到变化
 
 ```jsx
 const text="other values";
 ```
 
-## Get Help
+## 寻求帮助
 
-- Contact me on iewnap@outlook.com
-- raise an issue on Github.[Submit a issue](https://github.com/violinux666/webpack-sw-plugin/issues/new)
+- 电邮：iewnap@outlook.com
+- 直接提一个issue[Submit a issue](https://github.com/violinux666/webpack-sw-plugin/issues/new)
 
 ## License
 
