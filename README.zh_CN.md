@@ -72,11 +72,8 @@ worker.register({
 });
 ```
 
-这个是在example目录下的例子，如果你改变text的值，你将看到变化
-
-```jsx
-const text="other values";
-```
+如果客户端的webpack打包文件发生变化，onUpdate方法就会执行
+例子中页面将会在5秒后进行刷新，刷新后页面将使用全新的打包文件
 
 ## 寻求帮助
 

@@ -74,11 +74,8 @@ worker.register({
 });
 ```
 
-There is a example in */example*. onUpdate will be triggered if the text is changed.
-
-```jsx
-const text="other values";
-```
+onUpdate will be triggered if webpack output file has been changed.
+For example,page will refresh in 5s,page will use the newest bundle file after refresh
 
 ## Get Help
 
