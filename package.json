@@ -1,6 +1,6 @@
 {
   "name": "webpack-sw-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "plugin for webpack4 to build a ServiceWorker webapp quickly and easily",
   "main": "lib/index.js",
   "scripts": {
