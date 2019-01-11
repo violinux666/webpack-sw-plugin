@@ -75,7 +75,7 @@ when the webpack output file has benn changed, we provide a callback API you can
 import worker from 'webpack-sw-plugin/lib/worker';
 worker.register({
     onUpdate:()=>{
-        const test="Page has a new version, whether to refresh the page";
+        const test="Page has a new version, refresh the page?";
         var result=confirm(test);
         if(result){
             window.location.reload();
