@@ -73,16 +73,17 @@ plugins:[
 import worker from 'webpack-sw-plugin/lib/worker';
 worker.register({
     onUpdate:()=>{
-        console.log('client has a new version. page will refresh in 5s....');
-        setTimeout(function(){
+        const test="Page has a new version, whether to refresh the page";
+        var result=confirm(test);
+        if(result){
             window.location.reload();
-        },5000)
+        }
     }
 });
 ```
 
 如果客户端的webpack打包文件发生变化，onUpdate方法就会执行
-例子中页面将会在5秒后进行刷新，刷新后页面将使用全新的打包文件
+例子中页面将会在弹出一个确认框，点击确认后将刷新页面，之后会使用全新的打包文件
 
 ## 寻求帮助
 

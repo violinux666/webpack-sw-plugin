@@ -69,22 +69,23 @@ plugins:[
 
 ### onUpdate
 
-when the webpack output file has benn changed, we provide a callback API u can do something
+when the webpack output file has benn changed, we provide a callback API you can do something
 
 ```jsx
 import worker from 'webpack-sw-plugin/lib/worker';
 worker.register({
     onUpdate:()=>{
-        console.log('client has a new version. page will refresh in 5s....');
-        setTimeout(function(){
+        const test="Page has a new version, whether to refresh the page";
+        var result=confirm(test);
+        if(result){
             window.location.reload();
-        },5000)
+        }
     }
 });
 ```
 
 onUpdate will be triggered if webpack output file has been changed.
-For example,page will refresh in 5s,page will use the newest bundle file after refresh
+For example, page will show a dialog, page will use the newest bundle file after refresh
 
 ## Get Help
 
