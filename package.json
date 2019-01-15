@@ -37,6 +37,12 @@
     "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.14"
   },
+  "babel": {
+    "presets": [
+      "env",
+      "stage-1"
+    ]
+  },
   "files": [
     "lib"
   ]
