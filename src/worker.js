@@ -1,3 +1,5 @@
+const TIMESTAMP=new Date().getTime();
+const POSTFIX=`?key=${TIMESTAMP}`;
 function register(option={}){
     let {onUpdate}=option;
     if(navigator.serviceWorker){
@@ -10,7 +12,7 @@ function register(option={}){
                 onUpdate&&onUpdate.call(null);
             }
         })
-        navigator.serviceWorker.register(swPath).then(function (reg) {
+        navigator.serviceWorker.register(`${swPath}${POSTFIX}`).then(function (reg) {
             if (reg.active) {
                 sendPageUrl();
             }
